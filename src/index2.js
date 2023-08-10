@@ -59,6 +59,62 @@ const HeadingComponent = () => {
     return <h1>Namaste Functional Component</h1>;
 }
 
+//now suppose  if we want to render this HeadingComponent then we cant use root.render(HeadingComponent) as we did in root.render(jsxHeading) because HeadingComponent is not the react element it is function constant and jsxHeading is react element.
+
+//so to render the functional component we need to write it in angualr brackets
+const root3 = ReactDOM.createRoot(document.getElementById('root'));
+root3.render(<HeadingComponent/>);
+
+//now suppose there are 2 components and we want to use 1st component in 2nd component we can do that as below
+
+const Title = () => (
+    <h1>REACT</h1>
+)
+
+const Subtitle = () => (
+    <div>
+        <Title/>       
+        {/* //here <Title /> and <Title></Title> are same  or else we can the function like this "{Title()}" */}
+        <h4>javascript</h4>
+    </div>
+   
+)
+
+const root4 = ReactDOM.createRoot(document.getElementById('root'));
+root4.render(<Subtitle />);
+
+// This is also called as COMPONENT COMPOSITION i.e(rendering 1 component in another component).
+
+
+// If we dont want to write arrow functions while writing functional components then we can use normal functions like below
+const func = function() {
+    return (<h1>func</h1>)
+}
+
+const root6 = ReactDOM.createRoot(document.getElementById('root'));
+root6.render(<func/>)
+
+//now if we want to js inside jsx  or any html inside the component then we can do it by writing the html code in "{}" as shown below
+const num= 1000
+const element = <h5>element</h5>  // this react element is the normal variable at the end of the day
+const Header = () => (
+    <div>
+        {num}                   //this is string interpolation
+        {<h1>hi</h1>}            //we can also write html code in this 
+        {num+200}  
+        {console.log("wqeqerwr")}      //even this will work   
+        {element}                   //we can also write element in these interpolation
+        <h1>hiii</h1>
+
+    </div>
+)
+
+const root5 = ReactDOM.createRoot(document.getElementById('root'));
+root5.render(<Header/>)
+
+// we can also put react component inside react element.
+//JSX prevents crodss sites attacks ,whatever code is written inside the interpolation is sanitized in the sense no malicious data is present 
+
 
 
 
