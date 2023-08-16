@@ -1,3 +1,56 @@
 #heading {
   color: red;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black
+}
+
+.logo {
+  width: 8rem;
+}
+
+.nav-items>ul {
+  font-size: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  list-style-type: none;
+  margin: 2.75rem 1rem;
+  align-items: center;
+}
+
+/* .res-card { */
+/* width : 200px;
+   height: 300px; */
+/* border: 1px solid black; */
+/* } */
+
+.res-card:hover {
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.res-card>div {
+  margin: 0.5rem;
+}
+
+.search {
+  padding: 0.75rem
+}
+
+.res-logo {
+  width: 200px;
+}
+
+.resto-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.filter-btn {
+  margin: 1rem;
+  cursor : pointer;
+}
