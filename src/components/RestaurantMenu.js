@@ -3,9 +3,10 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 //this is the hook to read the id from the url which is given by react-router-dom
 import { MENU_API } from "../utils/constants";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
+  // const [resInfo, setResInfo] = useState(null);   commented in ep09 part2
 
 
 //how to use useParams() 
@@ -14,20 +15,27 @@ const RestaurantMenu = () => {
 //here above we get params as an object where resId is present as key so instead we ca destructure as shown below
 
   const {id} = useParams();
+
+
+//ep 09 part 2 this is uses the custom hook to get the data to display cards instead of using the useState in same component to get the data so the above line "const [resInfo, setResInfo] = useState(null);" gets commented 
+  const resInfo = useRestaurantMenu(id);
   console.log(id);
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
 
-  const fetchMenu = async () => {
-    const data = await fetch(
-    MENU_API+ id
-    );
-    const json = await data.json();
-    console.log(json);
-    setResInfo(json.data);
-  };
+//commented in ep09 part 2 because of single responsilbility and use of custom hooks
+
+  // useEffect(() => {
+  //   fetchMenu();
+  // }, []);
+
+  // const fetchMenu = async () => {
+  //   const data = await fetch(
+  //   MENU_API+ id
+  //   );
+  //   const json = await data.json();
+  //   console.log(json);
+  //   setResInfo(json.data);
+  // };
 
   if (resInfo === null) return <Shimmer />;
 

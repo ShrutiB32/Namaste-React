@@ -1,4 +1,4 @@
-#heading {
+/* #heading {
   color: red;
 }
 
@@ -27,7 +27,7 @@
 /* border: 1px solid black; */
 /* } */
 
-.res-card {
+/* .res-card {
   width: 215px;
   color: black;
 }
@@ -58,6 +58,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+ 
 }
 
 .filter-btn {
@@ -92,5 +93,21 @@
 .user-card {
   padding: 10px;
   border: 1px solid black;
-}
+} */ 
 
+
+/* .res-card:hover{
+  animation: hover-effect 2s ease;
+} */
+
+/* @keyframes hover-effect {
+  to {
+    transform: translateY(10vmax)
+  }
+} */
+
+/* ep10 using tailwind so commented above code because we need to import the tailwind into our project file */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

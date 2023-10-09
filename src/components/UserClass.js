@@ -24,12 +24,50 @@ class UserClass extends React.Component {
 //this is the way to create a state variables 
         this.state = {
             count: 0,
+            //to write the api data in the template
+            userInfo: {
+                name:"dummy",
+                location:"Default",
+                avatar_url:"http://dummmy.com"
+            }
         };
+//if we have to create a 2 state variables then not a separate state for each variable
+        // this.state = {
+        //     count1:0,
+        //     count2:1
+        // }
+    console.log("constructor child")
     }
+
+    //part 04 componentDidMount()
+
+    // componentDidMount() {
+    //     console.log("componentDidMount");
+    // }
+
+    //so to make the api call we comment the above componentDidMount() mtd 
+    async componentDidMount() {
+        const data = await fetch(" https://api.github.com/users/ShrutiB32");
+        const json  = await data.json();
+        console.log(json);
+        //to update the stateVariable
+        this.setState({
+            userInfo: json,
+        })
+    }
+    componentDidUpdate() {
+        console.log("component did update")
+    }
+
+    componentWillUnmount() {
+        console.log("component did unmount")
+    }
+
     render() {
         const {name} = this.props;
         //or else we can destructure the state variable and use it instead of using {this.state.count};
-        const {count} = this.state;
+        // const {count} = this.state;
+        console.log("child render");
         return (
             <div className="user-card">
                 <h2>Name: Shruti</h2>
@@ -43,10 +81,14 @@ class UserClass extends React.Component {
                     //never do this
                     // this.state.count=this.state.count+2;
                     this.setState({
-                        count: this.state.count +1,
+                        count: this.state.count + 1,
                     })
                 }}>Count Increase</button>
                 <h1>Count: {this.state.count}</h1>
+                {/* using the api data */}
+                <img src={this.state.userInfo.avatar_url}/>
+                <h2>Name : {this.state.userInfo.login}</h2>
+                <h3>Location : {this.state.userInfo.company}</h3>
             </div>
         )
     }

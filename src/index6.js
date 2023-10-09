@@ -20,8 +20,8 @@
 // how ue routes in react for this we use npm library i.e "react-router-DOM"
 // firstly to create the route we need to go to index6.js file first  that is the root level component so over here we need to create routing configuration and to do that we import createBrowserRouter 
 
-import React from "react";
-import ReactDOM from "react-dom";
+import React, { Suspense, lazy } from "react";
+import ReactDOM from "react-dom/client";
 import  HeaderComponent  from "./components/Header";
 import Body from "./components/Body";
 import About from "./components/About";
@@ -29,6 +29,10 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+// import Grocery from "./components/grocery"; // ep09 part5(usual mtd) use lazy load mtd
+
+//ep09 part5 (lazy-loading mtd)
+const Grocery = lazy(()=>import("./components/grocery"));
 
 const AppLayout = () => {
     return (
@@ -86,6 +90,10 @@ const appRouter = createBrowserRouter([
             {
                 path:"/contact",
                 element : <Contact />
+            },
+            {
+                path:"/grocery",
+                element : <Suspense fallback={<h1>loading</h1>}><Grocery /></Suspense> // ep09 part 5 (lazyloading mtd)
             },
             {
                 path: "/restaurants/:id",

@@ -3,6 +3,7 @@ import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 //ep05 it is not good to keep the hardcoded data into our component file. so we should keep in another file like utils.js,consts.js,config.js
 
@@ -146,16 +147,25 @@ const Body = () => {
   // }  commented in part 5 since using ternary operator
   //ep06:part 5 if the length of listOfRestaurants is 0 then only will return the shimmer component or else the below component will be rendered.here we use if else but we will use ternary condition with only 1 return i.e
   const [searchText,setSearchText] = useState("")
+
+  //ep09: part 3 
+  const onlineStatus = useOnlineStatus();
+
+  if(onlineStatus === false) {
+    return <h1>Looks like you're offline !!</h1>
+  }
+
   return listOfRestauants.length === 0 ? <Shimmer /> :(
     <div className="body">
-      <div className="filter">
+      <div className="flex items-center">
       {/* ep06 part 6 search component */}
-      <div className="search">
+      <div className="search m-4 p-4">
         {/* ep06 part 6 here if the value is written as value={searchText} then we can type in the input field this is because we have set the value of the searchText as [""] and in input tag we have binded that value which is not changing also becuase we cannot directly chnge the useState variable value so we use onChange event handler to update to new value so now how will we get this new value it is through the callback value "e" ,here after everychange useState variable in the input field react rerendersthe body component quickly i.e after we type each character but it only do manipulation of the input field not other body component*/}
-        <input type="text" className="search-box" value={searchText} onChange={(e)=> {
+        <input type="text" className="border border-solid border-black" value={searchText} onChange={(e)=> {
           setSearchText(e.target.value);
         }}/> 
-        <button onClick={() => {
+        <button className="px-4 py-2 bg-green-100 m-4 rounded-lg"
+          onClick={() => {
           //filter the restaurant cradsand update the ui
           //we need to get the search Text so we use value attribut in the input tag and bind it to local state variable so we use useState
           const filteredRestauarant=listOfRestauants.filter((res)=>
@@ -169,8 +179,9 @@ const Body = () => {
 
 
         {/* here onCLick takes a callback function */}
-        <button
-          className="filter-btn"
+        <div className="search m-4 p-4">
+        <button className="px-4 py-2 bg-gray-100 m-4 rounded-lg"
+          
           onClick={() => {
             // listOfRestauants=listOfRestauants.filter((res) => res.data.avgRating > 4.0
             // ); before 2nd argument i.e setListOfRestauants
@@ -188,8 +199,10 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
+        </div>
+        
       </div>
-      <div className="resto-container">
+      <div className="flex flex-wrap">
         {
           //   resList.map(restaurant => {
           //       return <RestaurantCard key={restaurant?.data.id} resData={restaurant}/>
