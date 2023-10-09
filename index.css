@@ -1,4 +1,4 @@
-#heading {
+/* #heading {
   color: red;
 }
 
@@ -27,6 +27,16 @@
 /* border: 1px solid black; */
 /* } */
 
+/* .res-card {
+  width: 215px;
+  color: black;
+}
+
+.res-card > div{
+  max-width: min-content;
+  overflow-wrap: break-word;
+  
+}
 .res-card:hover {
   cursor: pointer;
   border: 1px solid black;
@@ -48,9 +58,56 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+ 
 }
 
 .filter-btn {
   margin: 1rem;
   cursor : pointer;
 }
+
+.shimmer-container {
+  display : flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.shimmer-card {
+  height:400px;
+  width: 215px;
+  margin: 0.5rem;
+  background-color: rgb(230, 229, 229);
+}
+
+.login {
+  padding: 0 20px;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(0, 46, 116);
+}
+
+.filter {
+  display: flex;
+}
+
+.user-card {
+  padding: 10px;
+  border: 1px solid black;
+} */ 
+
+
+/* .res-card:hover{
+  animation: hover-effect 2s ease;
+} */
+
+/* @keyframes hover-effect {
+  to {
+    transform: translateY(10vmax)
+  }
+} */
+
+/* ep10 using tailwind so commented above code because we need to import the tailwind into our project file */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
